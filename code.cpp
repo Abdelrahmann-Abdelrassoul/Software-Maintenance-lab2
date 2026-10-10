@@ -7,7 +7,7 @@ int main() {
 
     // 2. Variables and User Input
     std::string userName;
-    std::cout << "Enter your name: "
+    std::cout << "Enter your name: ";
     std::cin >> userName; // Reads a single word from the user
 
     int num1, num2;
