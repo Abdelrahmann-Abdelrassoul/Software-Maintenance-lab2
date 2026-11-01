@@ -1,5 +1,5 @@
 """Pull SonarQube results for project 'flasky' into results/ (stdlib only)."""
-import base64, json, os, sys, time, urllib.parse, urllib.request
+import base64, json, os, sys, time, urllib.error, urllib.parse, urllib.request
 
 URL = os.environ.get("SONAR_URL", "http://localhost:9000")
 AUTH = base64.b64encode(f"{os.environ['SONAR_TOKEN']}:".encode()).decode()
@@ -39,7 +39,13 @@ while True:
         break
     page += 1
 
-hotspots = api("/api/hotspots/search", projectKey=KEY, ps=100).get("hotspots", [])
+hotspots = []
+for params in ({"project": KEY}, {"projectKey": KEY}):
+    try:
+        hotspots = api("/api/hotspots/search", ps=100, **params).get("hotspots", [])
+        break
+    except urllib.error.HTTPError as e:
+        print("hotspots", params, e.code, e.read()[:300])
 
 json.dump({"measures": measures, "issues": issues, "hotspots": hotspots},
           open(f"{OUT}/sonar_results.json", "w"), indent=2)
