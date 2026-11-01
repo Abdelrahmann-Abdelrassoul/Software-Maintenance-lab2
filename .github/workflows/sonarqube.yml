@@ -1,0 +1,65 @@
+name: Lab 5 - SonarQube analysis of Flasky
+
+on:
+  push:
+    branches: [lab5-sonarqube]
+    paths: [".github/workflows/sonarqube.yml", "sonar-project.properties", "scripts/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+    services:
+      sonarqube:
+        image: sonarqube:community
+        ports: ["9000:9000"]
+    env:
+      SONAR_PW: Lab5-Sonar-Pass!
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone Flasky
+        run: |
+          git clone --depth 1 https://github.com/miguelgrinberg/flasky flasky
+          cp sonar-project.properties flasky/
+
+      - name: Wait for SonarQube to be UP
+        run: |
+          for i in $(seq 1 60); do
+            s=$(curl -s localhost:9000/api/system/status | jq -r .status || true)
+            echo "status=$s"; [ "$s" = "UP" ] && exit 0; sleep 5
+          done; exit 1
+
+      - name: Create project and token (same as slides Steps 4-5)
+        run: |
+          curl -sf -u admin:admin -X POST "localhost:9000/api/users/change_password?login=admin&previousPassword=admin&password=$SONAR_PW"
+          curl -sf -u "admin:$SONAR_PW" -X POST "localhost:9000/api/projects/create?project=flasky&name=Flasky%20Web%20App"
+          T=$(curl -sf -u "admin:$SONAR_PW" -X POST "localhost:9000/api/user_tokens/generate?name=lab5" | jq -r .token)
+          echo "::add-mask::$T"; echo "SONAR_TOKEN=$T" >> $GITHUB_ENV
+
+      - name: Run sonar-scanner (Step 7)
+        run: |
+          docker run --rm --network host -v "$PWD/flasky:/usr/src" \
+            -e SONAR_HOST_URL=http://localhost:9000 -e SONAR_TOKEN="$SONAR_TOKEN" \
+            sonarsource/sonar-scanner-cli -Dsonar.projectBaseDir=/usr/src 2>&1 | tee scanner.log
+          grep -q "ANALYSIS SUCCESSFUL\|EXECUTION SUCCESS" scanner.log
+
+      - name: Export results
+        run: |
+          python3 scripts/fetch_results.py
+          mkdir -p results && grep -E "ANALYSIS SUCCESSFUL|EXECUTION SUCCESS|dashboard\?id" scanner.log > results/scanner_log_tail.txt || true
+          curl -s -u "$SONAR_TOKEN:" localhost:9000/api/server/version > results/sonarqube_version.txt
+
+      - name: Screenshots
+        continue-on-error: true
+        run: |
+          pip install -q playwright && python3 -m playwright install --with-deps chromium >/dev/null
+          python3 scripts/screenshots.py
+
+      - name: Commit results to branch
+        run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add results && git commit -m "Lab 5: SonarQube results [skip ci]" && git push || echo "nothing to commit"
