@@ -39,7 +39,7 @@ while True:
         break
     page += 1
 
-hotspots = api("/api/hotspots/search", projectKey=KEY, ps=500).get("hotspots", [])
+hotspots = api("/api/hotspots/search", projectKey=KEY, ps=100).get("hotspots", [])
 
 json.dump({"measures": measures, "issues": issues, "hotspots": hotspots},
           open(f"{OUT}/sonar_results.json", "w"), indent=2)
@@ -48,10 +48,11 @@ json.dump({"measures": measures, "issues": issues, "hotspots": hotspots},
 L = ["# SonarQube results - Flasky", "", "## Measures", ""]
 L += [f"- {k}: {v}" for k, v in sorted(measures.items())]
 L += ["", f"## Issues ({len(issues)})", "",
-      "| Type | Severity | File:Line | Rule | Message |", "|---|---|---|---|---|"]
+      "| Type | Severity | Impact (quality:severity) | File:Line | Rule | Message |", "|---|---|---|---|---|---|"]
 for i in sorted(issues, key=lambda i: (i.get("type", ""), i.get("severity", ""), i["component"])):
     f = i["component"].split(":", 1)[-1]
-    L.append(f"| {i.get('type')} | {i.get('severity')} | {f}:{i.get('line', '')} | "
+    imp = ", ".join(f"{x['softwareQuality']}:{x['severity']}" for x in i.get("impacts", []))
+    L.append(f"| {i.get('type')} | {i.get('severity')} | {imp} | {f}:{i.get('line', '')} | "
              f"{i['rule']} | {i['message'].replace('|', '/')} |")
 L += ["", f"## Security hotspots ({len(hotspots)})", ""]
 for h in hotspots:
