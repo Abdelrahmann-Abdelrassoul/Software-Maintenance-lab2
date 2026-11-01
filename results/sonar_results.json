@@ -1,0 +1,411 @@
+{
+  "measures": {
+    "coverage": "0.0",
+    "complexity": "247",
+    "reliability_rating": "1.0",
+    "code_smells": "1",
+    "duplicated_lines_density": "0.0",
+    "functions": "111",
+    "security_rating": "4.0",
+    "classes": "19",
+    "sqale_debt_ratio": "0.0",
+    "security_hotspots": "0",
+    "security_review_rating": "1.0",
+    "sqale_index": "5",
+    "sqale_rating": "1.0",
+    "alert_status": "OK",
+    "bugs": "0",
+    "cognitive_complexity": "136",
+    "duplicated_blocks": "0",
+    "ncloc": "1727",
+    "files": "45",
+    "vulnerabilities": "7"
+  },
+  "issues": [
+    {
+      "key": "0ad37f52-3ab3-4af5-9bff-c0f1a2f42b95",
+      "rule": "python:S4502",
+      "severity": "CRITICAL",
+      "component": "flasky:app/__init__.py",
+      "project": "flasky",
+      "line": 21,
+      "hash": "179643042db29a9995dc460d16749c31",
+      "textRange": {
+        "startLine": 21,
+        "endLine": 21,
+        "startOffset": 10,
+        "endOffset": 25
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure disabling CSRF protection is safe here.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "django",
+        "flask",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-11-01T14:12:23+0000",
+      "updateDate": "2026-11-01T14:12:23+0000",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "3a788818-5b32-4279-8aa3-bad451b76972",
+      "rule": "python:S2245",
+      "severity": "MAJOR",
+      "component": "flasky:app/fake.py",
+      "project": "flasky",
+      "line": 32,
+      "hash": "8b025e4813819ad4de4bf0a3e48f18e0",
+      "textRange": {
+        "startLine": 32,
+        "endLine": 32,
+        "startOffset": 30,
+        "endOffset": 56
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure that using this pseudorandom number generator is safe here.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "cryptography",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-11-01T14:12:23+0000",
+      "updateDate": "2026-11-01T14:12:23+0000",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "TRUSTWORTHY",
+      "cleanCodeAttributeCategory": "RESPONSIBLE",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "be753d11-88a3-4cef-a842-1194deb0bae5",
+      "rule": "python:S2092",
+      "severity": "MINOR",
+      "component": "flasky:app/main/views.py",
+      "project": "flasky",
+      "line": 232,
+      "hash": "45bd118fe2b64c5627d9f1097f4dd35b",
+      "textRange": {
+        "startLine": 232,
+        "endLine": 232,
+        "startOffset": 4,
+        "endOffset": 19
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure creating this cookie without the \"secure\" flag is safe.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "fastapi",
+        "django",
+        "privacy",
+        "flask",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-11-01T14:12:23+0000",
+      "updateDate": "2026-11-01T14:12:23+0000",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "f7ecd8c3-73e7-4737-8930-b44fa59f66e0",
+      "rule": "python:S3330",
+      "severity": "MINOR",
+      "component": "flasky:app/main/views.py",
+      "project": "flasky",
+      "line": 232,
+      "hash": "45bd118fe2b64c5627d9f1097f4dd35b",
+      "textRange": {
+        "startLine": 232,
+        "endLine": 232,
+        "startOffset": 4,
+        "endOffset": 19
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure creating this cookie without the \"HttpOnly\" flag is safe.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "fastapi",
+        "django",
+        "privacy",
+        "flask",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-11-01T14:12:23+0000",
+      "updateDate": "2026-11-01T14:12:23+0000",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "114edf8b-23cc-4244-95ef-9c1e45b45dec",
+      "rule": "python:S3330",
+      "severity": "MINOR",
+      "component": "flasky:app/main/views.py",
+      "project": "flasky",
+      "line": 240,
+      "hash": "f3ab729c5f3af4aa75403af0a3105e9b",
+      "textRange": {
+        "startLine": 240,
+        "endLine": 240,
+        "startOffset": 4,
+        "endOffset": 19
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure creating this cookie without the \"HttpOnly\" flag is safe.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "fastapi",
+        "django",
+        "privacy",
+        "flask",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-11-01T14:12:23+0000",
+      "updateDate": "2026-11-01T14:12:23+0000",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "69c72533-ea0b-467e-8934-32440edfa615",
+      "rule": "python:S2092",
+      "severity": "MINOR",
+      "component": "flasky:app/main/views.py",
+      "project": "flasky",
+      "line": 240,
+      "hash": "f3ab729c5f3af4aa75403af0a3105e9b",
+      "textRange": {
+        "startLine": 240,
+        "endLine": 240,
+        "startOffset": 4,
+        "endOffset": 19
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure creating this cookie without the \"secure\" flag is safe.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "fastapi",
+        "django",
+        "privacy",
+        "flask",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-11-01T14:12:23+0000",
+      "updateDate": "2026-11-01T14:12:23+0000",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "c08bfc85-68ef-459d-af65-841a334bcb70",
+      "rule": "python:S6903",
+      "severity": "CRITICAL",
+      "component": "flasky:app/models.py",
+      "project": "flasky",
+      "line": 204,
+      "hash": "ba4f7e584b690027408cee871fa62f18",
+      "textRange": {
+        "startLine": 204,
+        "endLine": 204,
+        "startOffset": 25,
+        "endOffset": 40
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Don't use `datetime.datetime.utcnow` to create this datetime object.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "datetime",
+        "pitfall"
+      ],
+      "creationDate": "2026-11-01T14:12:23+0000",
+      "updateDate": "2026-11-01T14:12:23+0000",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "HIGH"
+        },
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "5f8296d3-fd63-4d1a-b288-5f1520f91146",
+      "rule": "python:S4790",
+      "severity": "CRITICAL",
+      "component": "flasky:app/models.py",
+      "project": "flasky",
+      "line": 208,
+      "hash": "9cb0f44375bbb5208845d6266d9c2222",
+      "textRange": {
+        "startLine": 208,
+        "endLine": 208,
+        "startOffset": 23,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure that hashing data is safe here.",
+      "effort": "30min",
+      "debt": "30min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "cryptography",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-11-01T14:12:23+0000",
+      "updateDate": "2026-11-01T14:12:23+0000",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "TRUSTWORTHY",
+      "cleanCodeAttributeCategory": "RESPONSIBLE",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    }
+  ],
+  "hotspots": []
+}

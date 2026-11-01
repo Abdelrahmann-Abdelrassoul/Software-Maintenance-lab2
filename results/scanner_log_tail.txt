@@ -1,0 +1,2 @@
+14:12:37.896 INFO  ANALYSIS SUCCESSFUL, you can find the results at: http://localhost:9000/dashboard?id=flasky
+14:12:38.181 INFO  EXECUTION SUCCESS
